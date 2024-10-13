@@ -57,8 +57,9 @@ export default function ResultsPage() {
                 <Link href={`/book/${desk.id}`}>
                   Book Now
                 </Link >
+                
                 {/* Render the GoogleMap component */}
-                <DeskMap coordinates={desk.coordinates} />
+                {/* <DeskMap coordinates={desk.coordinates} /> */}
 
               </li>
             ))

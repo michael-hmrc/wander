@@ -14,17 +14,12 @@ export default function Navbar() {
         <ul className="flex space-x-6">
           <li>
             <Link href="/" className="text-gray-700 hover:text-pink-800">
-              Home
+              Search
             </Link>
           </li>
           <li>
             <Link href="/about" className="text-gray-700 hover:text-indigo-600">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link href="/book" className="text-gray-700 hover:text-indigo-600">
-              Book a Desk
+              FAQ
             </Link>
           </li>
           <li>

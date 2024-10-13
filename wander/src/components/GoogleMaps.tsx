@@ -9,7 +9,7 @@ interface GoogleMapProps {
 
 const containerStyle = {
   width: "100%",
-  height: "400px", // Adjust the map height as needed
+  height: "100%", // Adjust the map height as needed
 };
 
 export default function DeskMap({ coordinates }: GoogleMapProps) {
@@ -27,7 +27,7 @@ export default function DeskMap({ coordinates }: GoogleMapProps) {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={12} // Adjust the zoom level as needed
+      zoom={15} // Adjust the zoom level as needed
     >
       {/* Add a marker to the map */}
       <Marker position={center} />
