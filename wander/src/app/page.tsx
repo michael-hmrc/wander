@@ -8,9 +8,14 @@ interface Desk {
 }
 
 export default function HomePage() {
+
   const desks: Desk[] = [
-    { id: 1, name: 'Desk 1', price: 25, location: 'Downtown' },
-    { id: 2, name: 'Desk 2', price: 30, location: 'Uptown' },
+    { id: 1, name: "Desk 1", price: 25, location: "Downtown" },
+    { id: 2, name: "Desk 2", price: 30, location: "Uptown" },
+    { id: 3, name: "Desk 3", price: 20, location: "Suburban" },
+    { id: 4, name: "Desk 4", price: 35, location: "Suburban" },
+    { id: 5, name: "Desk 5", price: 35, location: "Downtown" },
+    { id: 6, name: "Desk 6", price: 35, location: "Downtown" },
   ];
 
   return (

@@ -61,7 +61,7 @@ export default function RootLayout({
           {/* Example: Global Navigation Bar */}
           <nav className="container mx-auto py-4">
             <a href="/" className="text-xl font-bold">
-              Desk Booking
+              Wander
             </a>
             {/* Add links or navigation here */}
           </nav>
