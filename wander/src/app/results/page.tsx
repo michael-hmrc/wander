@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import DeskMap from "../../components/GoogleMaps"; // Import the GoogleMap component
@@ -52,8 +53,12 @@ export default function ResultsPage() {
                   Price: <span className="font-medium">${desk.price}</span> per day
                 </p>
                 <p className="text-gray-700 mb-4">Location: {desk.location}</p>
+                <Link href={`/book/${desk.id}`}>
+                  Book Now
+                </Link >
                 {/* Render the GoogleMap component */}
                 <DeskMap coordinates={desk.coordinates} />
+
               </li>
             ))
           ) : (

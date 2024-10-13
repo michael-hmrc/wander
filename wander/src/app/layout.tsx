@@ -60,7 +60,7 @@ export default function RootLayout({
         <header>
           {/* Example: Global Navigation Bar */}
           <nav className="container mx-auto py-4">
-            <a href="/" className="text-xl font-bold">
+            <a href="/" className="text-2xl font-bold">
               Wander
             </a>
             {/* Add links or navigation here */}
@@ -70,7 +70,7 @@ export default function RootLayout({
           {children} {/* Page content */}
         </main>
         <footer className="container mx-auto py-4">
-          <p>&copy; {new Date().getFullYear()} Desk Booking App. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Wander. All rights reserved.</p>
         </footer>
       </body>
     </html>
