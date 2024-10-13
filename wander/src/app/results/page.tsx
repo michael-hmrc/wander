@@ -2,20 +2,24 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import DeskMap from "../../components/GoogleMaps"; // Import the GoogleMap component
 
 interface Desk {
   id: number;
   name: string;
   price: number;
   location: string;
+  coordinates: { lat: number; lng: number }; // latitude and longitude
 }
+
+// Sample data with latitude and longitude (Google Maps expects lat/lng format)
 const desks: Desk[] = [
-  { id: 1, name: "Desk 1", price: 25, location: "Downtown" },
-  { id: 2, name: "Desk 2", price: 30, location: "Uptown" },
-  { id: 3, name: "Desk 3", price: 20, location: "Suburban" },
-  { id: 4, name: "Desk 4", price: 35, location: "Suburban" },
-  { id: 5, name: "Desk 5", price: 35, location: "Downtown" },
-  { id: 6, name: "Desk 6", price: 35, location: "Downtown" },
+  { id: 1, name: "Desk 1", price: 25, location: "Downtown", coordinates: { lat: 40.7128, lng: -74.006 } }, // New York City
+  { id: 2, name: "Desk 2", price: 30, location: "Uptown", coordinates: { lat: 40.73061, lng: -73.935242 } }, // NYC Uptown
+  { id: 3, name: "Desk 3", price: 20, location: "Suburban", coordinates: { lat: 34.0522, lng: -118.2437 } }, // Los Angeles
+  { id: 4, name: "Desk 4", price: 35, location: "Suburban", coordinates: { lat: 51.5074, lng: -0.1276 } },   // London
+  { id: 5, name: "Desk 5", price: 35, location: "Downtown", coordinates: { lat: 51.5074, lng: -0.1276 } },   // London
+  { id: 6, name: "Desk 6", price: 35, location: "Uptown", coordinates: { lat: 51.5074, lng: -0.1276 } },   // London
 ];
 
 export default function ResultsPage() {
@@ -24,7 +28,6 @@ export default function ResultsPage() {
   const locationQuery = searchParams.get("location")?.toLowerCase() || "";
 
   useEffect(() => {
-    // Filter the desks based on the location query
     if (locationQuery) {
       const filtered = desks.filter((desk) =>
         desk.location.toLowerCase().includes(locationQuery)
@@ -49,6 +52,8 @@ export default function ResultsPage() {
                   Price: <span className="font-medium">${desk.price}</span> per day
                 </p>
                 <p className="text-gray-700 mb-4">Location: {desk.location}</p>
+                {/* Render the GoogleMap component */}
+                <DeskMap coordinates={desk.coordinates} />
               </li>
             ))
           ) : (
