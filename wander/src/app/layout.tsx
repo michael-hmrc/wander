@@ -1,3 +1,4 @@
+import Navbar from "@/components/NavBar";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -58,14 +59,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 text-gray-900`}
       >
         <header>
-          {/* Example: Global Navigation Bar */}
+          {/* Example: Global Navigation Bar
           <nav className="container mx-auto py-4">
             <a href="/" className="text-2xl font-bold">
               Wander
             </a>
-            {/* Add links or navigation here */}
-          </nav>
+          </nav> */}
         </header>
+        <Navbar /> {/* Add the Navbar here */}
         <main className="container mx-auto min-h-screen">
           {children} {/* Page content */}
         </main>

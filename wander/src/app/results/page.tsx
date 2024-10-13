@@ -15,12 +15,13 @@ interface Desk {
 
 // Sample data with latitude and longitude (Google Maps expects lat/lng format)
 const desks: Desk[] = [
-  { id: 1, name: "Desk 1", price: 25, location: "Downtown", coordinates: { lat: 40.7128, lng: -74.006 } }, // New York City
-  { id: 2, name: "Desk 2", price: 30, location: "Uptown", coordinates: { lat: 40.73061, lng: -73.935242 } }, // NYC Uptown
-  { id: 3, name: "Desk 3", price: 20, location: "Suburban", coordinates: { lat: 34.0522, lng: -118.2437 } }, // Los Angeles
-  { id: 4, name: "Desk 4", price: 35, location: "Suburban", coordinates: { lat: 51.5074, lng: -0.1276 } },   // London
-  { id: 5, name: "Desk 5", price: 35, location: "Downtown", coordinates: { lat: 51.5074, lng: -0.1276 } },   // London
-  { id: 6, name: "Desk 6", price: 35, location: "Uptown", coordinates: { lat: 51.5074, lng: -0.1276 } },   // London
+  { id: 1, name: "Desk 1", price: 25, location: "New York City", coordinates: { lat: 40.7128, lng: -74.006 } },
+  { id: 2, name: "Desk 2", price: 30, location: "New York City", coordinates: { lat: 40.73061, lng: -73.935242 } },
+  { id: 3, name: "Desk 3", price: 20, location: "Los Angeles", coordinates: { lat: 34.0522, lng: -118.2437 } },
+  { id: 4, name: "Desk 4", price: 35, location: "London", coordinates: { lat: 51.5074, lng: -0.1276 } },
+  { id: 5, name: "Desk 5", price: 100, location: "London", coordinates: { lat: 51.5074, lng: -0.1276 } },
+  { id: 6, name: "Desk 6", price: 20, location: "London", coordinates: { lat: 51.5074, lng: -0.1276 } },
+  { id: 6, name: "Desk 6", price: 35, location: "London", coordinates: { lat: 51.5074, lng: -0.1276 } },
 ];
 
 export default function ResultsPage() {

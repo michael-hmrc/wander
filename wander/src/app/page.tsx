@@ -19,19 +19,20 @@ export default function SearchPage() {
   return (
     <main className="min-h-screen bg-gray-50 p-6">
       <div className="container mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-8">Search Desks by Location</h1>
+        <h1 className="text-3xl font-bold text-center mb-8">Find a work location</h1>
 
-        <form onSubmit={handleSubmit} className="mb-6">
+        <form onSubmit={handleSubmit} className="mb-6 flex justify-center">
           <input
             type="text"
             placeholder="Enter location"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-1/3 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" 
+            // Change w-full to w-96 or use another width
           />
           <button
             type="submit"
-            className="mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors"
+            className="ml-4 bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors"
           >
             Search
           </button>
