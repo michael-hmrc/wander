@@ -4,13 +4,15 @@ import { useState } from "react";
 import 'react-calendar/dist/Calendar.css';
 import DatePicker from "react-date-picker";
 import 'react-date-picker/dist/DatePicker.css';
-import DeskMap from "./GoogleMaps";
 
 interface Desk {
   id: number;
   name: string;
   price: number;
-  location: string;
+  address: string;
+  city: string;
+  country: string;
+  postcode: string;
   coordinates: { lat: number; lng: number }; // latitude and longitude
 }
 

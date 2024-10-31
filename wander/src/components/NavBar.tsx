@@ -27,6 +27,16 @@ export default function Navbar() {
               Contact
             </Link>
           </li>
+          <li>
+            <Link href="/user/access" className="text-gray-700 hover:text-indigo-600">
+              Register/Login
+            </Link>
+          </li>
+          <li>
+            <Link href="/business/dashboard" className="text-gray-700 hover:text-indigo-600">
+              Business Dashbaord
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>

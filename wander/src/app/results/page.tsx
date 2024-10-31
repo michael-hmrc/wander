@@ -3,26 +3,29 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import DeskMap from "../../components/GoogleMaps"; // Import the GoogleMap component
 
 interface Desk {
   id: number;
   name: string;
   price: number;
-  location: string;
+  address: string;
+  city: string;
+  country: string;
+  postcode: string | null;
   coordinates: { lat: number; lng: number }; // latitude and longitude
+  imageUrl: string; // Add imageUrl property
 }
 
-// Sample data with latitude and longitude (Google Maps expects lat/lng format)
 const desks: Desk[] = [
-  { id: 1, name: "Desk 1", price: 25, location: "New York City", coordinates: { lat: 40.7128, lng: -74.006 } },
-  { id: 2, name: "Desk 2", price: 30, location: "New York City", coordinates: { lat: 40.73061, lng: -73.935242 } },
-  { id: 3, name: "Desk 3", price: 20, location: "Los Angeles", coordinates: { lat: 34.0522, lng: -118.2437 } },
-  { id: 4, name: "Desk 4", price: 35, location: "London", coordinates: { lat: 51.5074, lng: -0.1276 } },
-  { id: 5, name: "Desk 5", price: 100, location: "London", coordinates: { lat: 51.5074, lng: -0.1276 } },
-  { id: 6, name: "Desk 6", price: 20, location: "London", coordinates: { lat: 51.5074, lng: -0.1276 } },
-  { id: 6, name: "Desk 6", price: 35, location: "London", coordinates: { lat: 51.5074, lng: -0.1276 } },
+  { id: 1, name: "Office 1", price: 25, address: "1 Bob Street", city: "New York City", country: "United States", postcode: null, coordinates: { lat: 40.7128, lng: -74.006 }, imageUrl: "/images/pepe_house.jpg" },
+  { id: 2, name: "Office 2", price: 30, address: "1 Bob Street", city: "New York City", country: "United States", postcode: null, coordinates: { lat: 40.73061, lng: -73.935242 }, imageUrl: "/images/pepe_house.jpg" },
+  { id: 3, name: "Desk 3", price: 20, address: "1 Bob Street", city: "Los Angeles", country: "United States", postcode: null, coordinates: { lat: 34.0522, lng: -118.2437 }, imageUrl: "/images/pepe_house.jpg" },
+  { id: 4, name: "Desk 4", price: 35, address: "1 Bob Street", city: "London", country: "United Kingdom", postcode: "CF3 3NJ", coordinates: { lat: 51.5074, lng: -0.1276 }, imageUrl: "/images/pepe_house.jpg" },
+  { id: 5, name: "Desk 5", price: 100, address: "1 Bob Street", city: "London", country: "United Kingdom", postcode: "CF3 3NJ", coordinates: { lat: 51.5074, lng: -0.1276 }, imageUrl: "/images/pepe_house.jpg" },
+  { id: 6, name: "Office 6", price: 20, address: "1 Bob Street", city: "London", country: "United Kingdom", postcode: "CF3 3NJ", coordinates: { lat: 51.5074, lng: -0.1276 }, imageUrl: "/images/pepe_house.jpg" },
+  { id: 7, name: "Cafe House 7", price: 35, address: "1 Bob Street", city: "London", country: "United Kingdom", postcode: "CF3 3NJ", coordinates: { lat: 51.5074, lng: -0.1276 }, imageUrl: "/images/pepe_house.jpg" },
 ];
+
 
 export default function ResultsPage() {
   const searchParams = useSearchParams();
@@ -32,7 +35,7 @@ export default function ResultsPage() {
   useEffect(() => {
     if (locationQuery) {
       const filtered = desks.filter((desk) =>
-        desk.location.toLowerCase().includes(locationQuery)
+        desk.city.toLowerCase().includes(locationQuery)
       );
       setFilteredDesks(filtered);
     }
@@ -49,17 +52,26 @@ export default function ResultsPage() {
           {filteredDesks.length > 0 ? (
             filteredDesks.map((desk) => (
               <li key={desk.id} className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow">
+                <img src={desk.imageUrl} alt={desk.name} className="w-full h-100 object-cover rounded-t-lg mb-4" />
                 <h2 className="text-xl font-semibold mb-2">{desk.name}</h2>
                 <p className="text-gray-700">
-                  Price: <span className="font-medium">${desk.price}</span> per day
+                  <span className="font-medium">From £{desk.price}</span> per day
                 </p>
-                <p className="text-gray-700 mb-4">Location: {desk.location}</p>
-                <Link href={`/book/${desk.id}`}>
-                  Book Now
-                </Link >
-                
-                {/* Render the GoogleMap component */}
-                {/* <DeskMap coordinates={desk.coordinates} /> */}
+                <p className="text-gray-700 mb-4">{desk.address}</p>
+                <p className="text-gray-700 mb-4">{desk.postcode}</p>
+                <p className="text-gray-700 mb-4">{desk.city}</p>
+
+                {/* Center the Book Now button */}
+                <div className="flex justify-center items-center">
+                  <button
+                    type="submit"
+                    className="w-2/3 bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 text-center"
+                  >
+                    <Link href={`/book/${desk.id}`} className="block w-full h-full">
+                      Book Now
+                    </Link>
+                  </button>
+                </div>
 
               </li>
             ))
