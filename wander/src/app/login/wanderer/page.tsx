@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -19,7 +19,6 @@ export default function Login() {
     }
 
     try {
-      // Use next-auth signIn function with "credentials" provider
       const result = await signIn("credentials", {
         redirect: false,
         email,
@@ -27,15 +26,22 @@ export default function Login() {
       });
 
       if (result && !result.error) {
-        // If login is successful, redirect to the dashboard
         router.push("/dashboard");
       } else {
-        // Handle login errors
         setError("Invalid email or password");
       }
     } catch (error) {
       console.error("Login error:", error);
       setError("An error occurred during login. Please try again.");
+    }
+  };
+
+  const handleProviderSignIn = async (provider: string) => {
+    try {
+      await signIn(provider, { callbackUrl: "/dashboard" });
+    } catch (error) {
+      console.error(`Sign-in error with ${provider}:`, error);
+      setError(`An error occurred with ${provider} sign-in. Please try again.`);
     }
   };
 
@@ -60,7 +66,6 @@ export default function Login() {
           required
         />
 
-        {/* Display error message if any */}
         {error && <p className="text-red-500 text-sm">{error}</p>}
 
         <button
@@ -70,6 +75,35 @@ export default function Login() {
           Log In
         </button>
       </form>
+
+      {/* Sign in with Providers */}
+      <div className="mt-6 w-full max-w-md space-y-4">
+        <button
+          onClick={() => handleProviderSignIn("google")}
+          className="w-full bg-red-500 text-white py-3 rounded hover:bg-red-600 transition-colors"
+        >
+          Sign in with Google
+        </button>
+        <button
+          onClick={() => handleProviderSignIn("github")}
+          className="w-full bg-gray-800 text-white py-3 rounded hover:bg-gray-900 transition-colors"
+        >
+          Sign in with GitHub
+        </button>
+        <button
+          onClick={() => handleProviderSignIn("facebook")}
+          className="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition-colors"
+        >
+          Sign in with Facebook
+        </button>
+        <button
+          onClick={() => handleProviderSignIn("twitter")}
+          className="w-full bg-blue-400 text-white py-3 rounded hover:bg-blue-500 transition-colors"
+        >
+          Sign in with Twitter
+        </button>
+      </div>
+
       <p className="mt-4">
         Don't have an account?{" "}
         <a href="/signup" className="text-blue-500 hover:underline">
