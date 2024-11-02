@@ -1,15 +1,30 @@
 // pages/api/auth/[...nextauth].ts
-import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import NextAuth, { NextAuthOptions } from "next-auth";
+import GitHubProvider from "next-auth/providers/github";
+import { JWT } from "next-auth/jwt";
+import { UserRole } from "../../../../next-auth";
 
-export default NextAuth({
-  // Configure one or more authentication providers
+const options: NextAuthOptions = {
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    GitHubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID || "",
+      clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
     }),
   ],
-  // Optional: You can enable a database to store user sessions
-  // database: process.env.DATABASE_URL,
-});
+  callbacks: {
+    async session({ session, token }) {
+      session.user.id = token.id as string;
+      session.user.role = token.role as UserRole; // Attach role to the session
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.role = user.role; // Attach role to the JWT token
+      }
+      return token;
+    },
+  },
+};
+
+export default NextAuth(options);

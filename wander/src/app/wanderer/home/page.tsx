@@ -30,7 +30,7 @@ export default function UserHomePage() {
         {/* Generate QR Code with user identifier */}
         <QRCodeCanvas
           value={userId}               // Value for the QR code (user's unique identifier)
-          size={200}                    // Size of the QR code in pixels
+          size={250}                    // Size of the QR code in pixels
           level="H"                     // Error correction level (H for high)
           bgColor="#FFFFFF"             // Background color
           fgColor="#000000"             // Foreground color

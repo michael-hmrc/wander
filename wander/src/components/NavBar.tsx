@@ -34,7 +34,12 @@ export default function Navbar() {
           </li>
           <li>
             <Link href="/business/dashboard" className="text-gray-700 hover:text-indigo-600">
-              Business Dashbaord
+              Business Dashboard
+            </Link>
+          </li>
+          <li>
+            <Link href="/developer" className="text-gray-700 hover:text-indigo-600">
+              Dev Dashboard
             </Link>
           </li>
         </ul>
