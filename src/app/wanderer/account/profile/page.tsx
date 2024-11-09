@@ -89,8 +89,8 @@ export default function ProfilePage() {
 
   return (
     <div className="container mx-auto max-w-5xl">
-      {/* Main content */}
-      <div className="ml-0 md:ml-64 p-6"> {/* Apply left margin for large screens when sidebar is visible */}
+      {/* Main content with adjusted padding to account for sticky sidebar */}
+      <div className="ml-0 md:ml-64 pt-16 p-6"> {/* Add pt-16 to account for the sidebar's sticky position */}
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Form sections */}
           <ProfileSection title="Profile Picture">
