@@ -1,8 +1,8 @@
 "use client";
 
-import Navbar from '@/components/NavBar';
-import Sidebar from '@/components/Sidebar';
-import { useState } from 'react';
+import Navbar from "@/components/NavBar";
+import Sidebar from "@/components/Sidebar";
+import { useState } from "react";
 
 interface User {
   firstName: string;
@@ -10,7 +10,7 @@ interface User {
   username: string;
   email: string;
   phone: string;
-  company: string; // Optional field
+  company: string;
   address: {
     street: string;
     city: string;
@@ -68,7 +68,6 @@ export default function ProfilePage() {
     setIsLoading(true);
 
     try {
-      // Simulate an API call to save the updated user data
       const res = await fetch("/api/update-profile", {
         method: "POST",
         body: JSON.stringify(userData),
@@ -88,164 +87,179 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="container mx-auto max-w-5xl">
-      {/* Main content with adjusted padding to account for sticky sidebar */}
-      <div className="ml-0 md:ml-64 pt-16 p-6"> {/* Add pt-16 to account for the sidebar's sticky position */}
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Form sections */}
-          <ProfileSection title="Profile Picture">
-            <div className="flex items-center">
-              <img src="/path/to/profile-picture.jpg" alt="Profile Picture" className="w-24 h-24 rounded-full border-2 border-blue-500 mr-4" />
-              <button className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200">
-                Change Picture
-              </button>
-            </div>
-          </ProfileSection>
 
-          {/* Other Profile Sections */}
-          <ProfileSection title="Login Details">
-            <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">Username</label>
-              <input
-                type="text"
-                id="username"
-                value={userData.username}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-                disabled={!isEditing}
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-              <input
-                type="email"
-                id="email"
-                value={userData.email}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-                disabled={!isEditing}
-              />
-            </div>
-          </ProfileSection>
+    <div className="min-h-screen flex flex-col">
+        {/* Main content with two columns */}
+        <div className="flex-1 p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Left column: Profile form */}
+          <div className="bg-white shadow-lg p-8 rounded-lg">
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <ProfileSection title="Profile Picture">
+                <div className="flex items-center justify-center">
+                  <img
+                    src="/path/to/profile-picture.jpg"
+                    alt="Profile Picture"
+                    className="w-24 h-24 rounded-full border-2 border-blue-500 mr-4"
+                  />
+                  <button className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200">
+                    Change Picture
+                  </button>
+                </div>
+              </ProfileSection>
 
-          {/* More profile sections */}
-          <ProfileSection title="Details">
-            <div>
-              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-              <input
-                type="text"
-                id="firstName"
-                value={userData.firstName}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-                disabled={!isEditing}
-              />
-            </div>
-            <div>
-              <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-              <input
-                type="text"
-                id="lastName"
-                value={userData.lastName}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-                disabled={!isEditing}
-              />
-            </div>
-            <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-              <input
-                type="tel"
-                id="phone"
-                value={userData.phone}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-                disabled={!isEditing}
-              />
-            </div>
-            <div>
-              <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">Company</label>
-              <input
-                type="text"
-                id="company"
-                value={userData.company}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-                disabled={!isEditing}
-              />
-            </div>
-          </ProfileSection>
+              {/* Login Details */}
+              <ProfileSection title="Login Details">
+                <div>
+                  <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                  <input
+                    type="text"
+                    id="username"
+                    value={userData.username}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={userData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                    disabled={!isEditing}
+                  />
+                </div>
+              </ProfileSection>
 
-          {/* More form sections for Address and Account Details */}
-          <ProfileSection title="Address">
-            <div>
-              <label htmlFor="street" className="block text-sm font-medium text-gray-700 mb-1">Street</label>
-              <input
-                type="text"
-                id="street"
-                value={userData.address.street}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-                disabled={!isEditing}
-              />
-            </div>
-            <div>
-              <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">City</label>
-              <input
-                type="text"
-                id="city"
-                value={userData.address.city}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-                disabled={!isEditing}
-              />
-            </div>
-            <div>
-              <label htmlFor="state" className="block text-sm font-medium text-gray-700 mb-1">State</label>
-              <input
-                type="text"
-                id="state"
-                value={userData.address.state}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-                disabled={!isEditing}
-              />
-            </div>
-            <div>
-              <label htmlFor="postcode" className="block text-sm font-medium text-gray-700 mb-1">Postcode</label>
-              <input
-                type="text"
-                id="postcode"
-                value={userData.address.postcode}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                required
-                disabled={!isEditing}
-              />
-            </div>
-          </ProfileSection>
+              {/* Details */}
+              <ProfileSection title="Details">
+                <div>
+                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    value={userData.firstName}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    value={userData.lastName}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    value={userData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">Company</label>
+                  <input
+                    type="text"
+                    id="company"
+                    value={userData.company}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                    disabled={!isEditing}
+                  />
+                </div>
+              </ProfileSection>
 
-          {/* Save Changes Button */}
-          <div className="col-span-full">
-            <button
-              type="submit"
-              className={`w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200 ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
-              disabled={isLoading}
-            >
-              {isLoading ? "Saving..." : "Save Changes"}
-            </button>
+              {/* Address */}
+              <ProfileSection title="Address">
+                <div>
+                  <label htmlFor="street" className="block text-sm font-medium text-gray-700 mb-1">Street</label>
+                  <input
+                    type="text"
+                    id="street"
+                    value={userData.address.street}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">City</label>
+                  <input
+                    type="text"
+                    id="city"
+                    value={userData.address.city}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="state" className="block text-sm font-medium text-gray-700 mb-1">State</label>
+                  <input
+                    type="text"
+                    id="state"
+                    value={userData.address.state}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="postcode" className="block text-sm font-medium text-gray-700 mb-1">Postcode</label>
+                  <input
+                    type="text"
+                    id="postcode"
+                    value={userData.address.postcode}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                    required
+                    disabled={!isEditing}
+                  />
+                </div>
+              </ProfileSection>
+
+              {/* Save Changes Button */}
+              <div className="col-span-full">
+                <button
+                  type="submit"
+                  className={`w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200 ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Saving..." : "Save Changes"}
+                </button>
+              </div>
+            </form>
+          
           </div>
-        </form>
-      </div>
+
+          {/* Right section: Additional Content or Widgets */}
+          <div className="hidden md:block bg-gray-200 p-4 rounded-lg">
+            <h2 className="text-xl font-semibold mb-4">Additional Information</h2>
+            <p className="text-sm">You can add widgets, statistics, quick links, or other content here.</p>
+          </div>
+        </div>
+    
     </div>
   );
 }

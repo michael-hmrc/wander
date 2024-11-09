@@ -53,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Sidebar isOpen={true} />
               
               {/* Main content section */}
-              <main className="flex-1 container mx-auto p-6 md:pl-64 mt-4">
+              <main className="flex-1 container mx-auto p-4 mt-4">
                 {children} {/* Page content */}
               </main>
             </div>
