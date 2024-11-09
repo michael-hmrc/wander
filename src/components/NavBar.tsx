@@ -9,9 +9,8 @@ export default function Navbar() {
   const { data: session } = useSession(); // Access session data from next-auth
 
   return (
-    <nav className="bg-gray-50 p-4">
+    <nav className="bg-gray-50 p-4 sticky top-0 z-50 w-full shadow-md">
       <div className="container mx-auto flex justify-between items-center">
-
         {/* Logo or App Name */}
         <div className="text-2xl font-semibold">
           <Link href="/">Wander</Link>
@@ -54,12 +53,11 @@ export default function Navbar() {
                 Welcome, <strong>{session.user.username || session.user.email}</strong>
               </span>
               <ul className="flex space-x-6">
-
-              <li>
-                <Link href="/wanderer/account/profile" className="text-blue-600 hover:text-blue-800">
-                  User profile
-                </Link>
-              </li>
+                <li>
+                  <Link href="/wanderer/account/profile" className="text-blue-600 hover:text-blue-800">
+                    Account
+                  </Link>
+                </li>
               </ul>
 
               <button

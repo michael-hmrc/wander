@@ -69,7 +69,7 @@ export default function RootLayout({
           </nav> */}
         </header>
         <AuthProvider>
-        <Navbar /> {/* Add the Navbar here */}
+        <Navbar /> 
         <main className="container mx-auto min-h-screen">
           {children} {/* Page content */}
         </main>
