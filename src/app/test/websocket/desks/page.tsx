@@ -3,7 +3,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 
 interface Desk {
   id: string;
@@ -15,14 +14,31 @@ export default function DeskBookingTest() {
   const [ws, setWs] = useState<WebSocket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
 
-  // Connect to WebSocket on component mount
-  useEffect(() => {
+  // Function to establish a new WebSocket connection with heartbeat and reconnect
+  const connectWebSocket = () => {
     const socketUrl = "ws://localhost:8080/ws/desk-availability";
     const websocket = new WebSocket(socketUrl);
 
     websocket.onopen = () => {
       console.log("Connected to WebSocket");
       setIsConnected(true);
+
+      // Send a heartbeat ping every 30 seconds
+      const heartbeat = setInterval(() => {
+        if (websocket.readyState === WebSocket.OPEN) {
+          websocket.send(JSON.stringify({ type: "ping" }));
+        }
+      }, 30000);
+
+      // Clear the heartbeat interval on close
+      websocket.onclose = () => {
+        clearInterval(heartbeat);
+        console.log("WebSocket connection closed");
+        setIsConnected(false);
+
+        // Attempt reconnection after 5 seconds
+        setTimeout(() => connectWebSocket(), 5000);
+      };
     };
 
     websocket.onmessage = (event) => {
@@ -42,20 +58,17 @@ export default function DeskBookingTest() {
       });
     };
 
-    websocket.onclose = () => {
-      console.log("WebSocket connection closed");
-      setIsConnected(false);
-    };
-
     websocket.onerror = (error) => {
       console.error("WebSocket error:", error);
     };
 
     setWs(websocket);
+  };
 
-    return () => {
-      websocket.close();
-    };
+  // Start the WebSocket connection on component mount
+  useEffect(() => {
+    connectWebSocket();
+    return () => ws?.close();
   }, []);
 
   // Function to send a booking or release message
