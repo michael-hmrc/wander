@@ -43,8 +43,8 @@ export interface UserLoginDetails {
   
   export interface UpdatedUserRequest {
     loginDetails?: UpdatedUserLoginDetails;
-    personalDetails?: UpdatedUserAddress;
     address?: UserAddress;
+    personalDetails?: UpdatedPersonalDetails;
   }
   
 
