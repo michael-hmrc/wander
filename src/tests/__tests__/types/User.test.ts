@@ -1,5 +1,5 @@
 // __tests__/apiResponse.test.ts
-import { User, UpdatedUserRequest } from "@/types/user";
+import { User } from "@/types/user";
 
 describe("API Response Validation", () => {
   it("should match hardcoded JSON structure for User object after JSON.stringify", () => {
@@ -8,23 +8,23 @@ describe("API Response Validation", () => {
       userId: "user_1",
       userLoginDetails: {
         id: 1,
-        user_id: "user_1",
+        userId: "user_1",
         username: "testUser",
-        password_hash: "hashed_password",
+        passwordHash: "hashed_password",
         email: "test@example.com",
         role: "Wanderer",
-        created_at: "2024-01-01T00:00:00Z",
-        updated_at: "2024-01-02T00:00:00Z",
+        createdAt: "2024-01-01T00:00:00Z",
+        updatedAt: "2024-01-02T00:00:00Z",
       },
       userPersonalDetails: {
-        user_id: "user_1",
-        first_name: "Test",
-        last_name: "User",
-        contact_number: "1234567890",
+        userId: "user_1",
+        firstName: "Test",
+        lastName: "User",
+        contactNumber: "1234567890",
         email: "test@example.com",
         company: "TestCompany",
-        created_at: "2024-01-01T00:00:00Z",
-        updated_at: "2024-01-02T00:00:00Z",
+        createdAt: "2024-01-01T00:00:00Z",
+        updatedAt: "2024-01-02T00:00:00Z",
       },
       userAddress: {
         userId: "user_1",
@@ -33,12 +33,12 @@ describe("API Response Validation", () => {
         country: "USA",
         county: "SomeCounty",
         postcode: "12345",
-        created_at: "2024-01-01T00:00:00Z",
-        updated_at: "2024-01-02T00:00:00Z",
+        createdAt: "2024-01-01T00:00:00Z",
+        updatedAt: "2024-01-02T00:00:00Z",
       },
       role: "Wanderer",
-      created_at: "2024-01-01T00:00:00Z",
-      updated_at: "2024-01-02T00:00:00Z",
+      createdAt: "2024-01-01T00:00:00Z",
+      updatedAt: "2024-01-02T00:00:00Z",
     };
 
     // Expected JSON output
@@ -46,23 +46,23 @@ describe("API Response Validation", () => {
       userId: "user_1",
       userLoginDetails: {
         id: 1,
-        user_id: "user_1",
+        userId: "user_1",
         username: "testUser",
-        password_hash: "hashed_password",
+        passwordHash: "hashed_password",
         email: "test@example.com",
         role: "Wanderer",
-        created_at: "2024-01-01T00:00:00Z",
-        updated_at: "2024-01-02T00:00:00Z",
+        createdAt: "2024-01-01T00:00:00Z",
+        updatedAt: "2024-01-02T00:00:00Z",
       },
       userPersonalDetails: {
-        user_id: "user_1",
-        first_name: "Test",
-        last_name: "User",
-        contact_number: "1234567890",
+        userId: "user_1",
+        firstName: "Test",
+        lastName: "User",
+        contactNumber: "1234567890",
         email: "test@example.com",
         company: "TestCompany",
-        created_at: "2024-01-01T00:00:00Z",
-        updated_at: "2024-01-02T00:00:00Z",
+        createdAt: "2024-01-01T00:00:00Z",
+        updatedAt: "2024-01-02T00:00:00Z",
       },
       userAddress: {
         userId: "user_1",
@@ -71,12 +71,12 @@ describe("API Response Validation", () => {
         country: "USA",
         county: "SomeCounty",
         postcode: "12345",
-        created_at: "2024-01-01T00:00:00Z",
-        updated_at: "2024-01-02T00:00:00Z",
+        createdAt: "2024-01-01T00:00:00Z",
+        updatedAt: "2024-01-02T00:00:00Z",
       },
       role: "Wanderer",
-      created_at: "2024-01-01T00:00:00Z",
-      updated_at: "2024-01-02T00:00:00Z",
+      createdAt: "2024-01-01T00:00:00Z",
+      updatedAt: "2024-01-02T00:00:00Z",
     });
 
     const actualJson = JSON.stringify(user);
@@ -91,23 +91,23 @@ describe("API Response Validation", () => {
       "userId": "user_1",
       "userLoginDetails": {
         "id": 1,
-        "user_id": "user_1",
+        "userId": "user_1",
         "username": "testUser",
-        "password_hash": "hashed_password",
+        "passwordHash": "hashed_password",
         "email": "test@example.com",
         "role": "Wanderer",
-        "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-02T00:00:00Z"
+        "createdAt": "2024-01-01T00:00:00Z",
+        "updatedAt": "2024-01-02T00:00:00Z"
       },
       "userPersonalDetails": {
-        "user_id": "user_1",
-        "first_name": "Test",
-        "last_name": "User",
-        "contact_number": "1234567890",
+        "userId": "user_1",
+        "firstName": "Test",
+        "lastName": "User",
+        "contactNumber": "1234567890",
         "email": "test@example.com",
         "company": "TestCompany",
-        "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-02T00:00:00Z"
+        "createdAt": "2024-01-01T00:00:00Z",
+        "updatedAt": "2024-01-02T00:00:00Z"
       },
       "userAddress": {
         "userId": "user_1",
@@ -116,12 +116,12 @@ describe("API Response Validation", () => {
         "country": "USA",
         "county": "SomeCounty",
         "postcode": "12345",
-        "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-02T00:00:00Z"
+        "createdAt": "2024-01-01T00:00:00Z",
+        "updatedAt": "2024-01-02T00:00:00Z"
       },
       "role": "Wanderer",
-      "created_at": "2024-01-01T00:00:00Z",
-      "updated_at": "2024-01-02T00:00:00Z"
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-02T00:00:00Z"
     }`;
 
     // Mock fetch call
@@ -141,23 +141,23 @@ describe("API Response Validation", () => {
       userId: "user_1",
       userLoginDetails: {
         id: 1,
-        user_id: "user_1",
+        userId: "user_1",
         username: "testUser",
-        password_hash: "hashed_password",
+        passwordHash: "hashed_password",
         email: "test@example.com",
         role: "Wanderer",
-        created_at: "2024-01-01T00:00:00Z",
-        updated_at: "2024-01-02T00:00:00Z",
+        createdAt: "2024-01-01T00:00:00Z",
+        updatedAt: "2024-01-02T00:00:00Z",
       },
       userPersonalDetails: {
-        user_id: "user_1",
-        first_name: "Test",
-        last_name: "User",
-        contact_number: "1234567890",
+        userId: "user_1",
+        firstName: "Test",
+        lastName: "User",
+        contactNumber: "1234567890",
         email: "test@example.com",
         company: "TestCompany",
-        created_at: "2024-01-01T00:00:00Z",
-        updated_at: "2024-01-02T00:00:00Z",
+        createdAt: "2024-01-01T00:00:00Z",
+        updatedAt: "2024-01-02T00:00:00Z",
       },
       userAddress: {
         userId: "user_1",
@@ -166,12 +166,12 @@ describe("API Response Validation", () => {
         country: "USA",
         county: "SomeCounty",
         postcode: "12345",
-        created_at: "2024-01-01T00:00:00Z",
-        updated_at: "2024-01-02T00:00:00Z",
+        createdAt: "2024-01-01T00:00:00Z",
+        updatedAt: "2024-01-02T00:00:00Z",
       },
       role: "Wanderer",
-      created_at: "2024-01-01T00:00:00Z",
-      updated_at: "2024-01-02T00:00:00Z",
+      createdAt: "2024-01-01T00:00:00Z",
+      updatedAt: "2024-01-02T00:00:00Z",
     };
 
     // Validate parsed object
