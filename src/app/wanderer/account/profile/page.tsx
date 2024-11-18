@@ -220,6 +220,51 @@ export default function ProfilePage() {
                   disabled={!isEditing}
                 />
               </div>
+              <div>
+                <label htmlFor="address.city" className="block text-sm font-medium text-gray-700 mb-1">City</label>
+                <input
+                  type="text"
+                  id="address.city"
+                  value={userData.userAddress.city || ""}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                  disabled={!isEditing}
+                />
+              </div>
+              <div>
+                <label htmlFor="address.country" className="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                <input
+                  type="text"
+                  id="address.country"
+                  value={userData.userAddress.country || ""}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                  disabled={!isEditing}
+                />
+              </div>
+              <div>
+                <label htmlFor="address.county" className="block text-sm font-medium text-gray-700 mb-1">County</label>
+                <input
+                  type="text"
+                  id="address.county"
+                  value={userData.userAddress.county || ""}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                  disabled={!isEditing}
+                />
+              </div>
+              <div>
+                <label htmlFor="address.postcode" className="block text-sm font-medium text-gray-700 mb-1">Postcode</label>
+                <input
+                  type="text"
+                  id="address.postcode"
+                  value={userData.userAddress.postcode || ""}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md"
+                  disabled={!isEditing}
+                />
+              </div>
+              
               {/* Add more fields for address */}
             </ProfileSection>
             
