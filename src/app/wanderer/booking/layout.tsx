@@ -3,20 +3,20 @@ import React from 'react';
 
 import AuthProvider from "@/components/AuthProvider";
 import Navbar from "@/components/NavBar";
-import WandererSidebar from '@/components/wanderer/WandererSidebar';
+import Sidebar from "@/components/Sidebar";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "../../../globals.css";
+import "../../globals.css";
 
 // Load fonts
 const geistSans = localFont({
-  src: "../../../fonts/GeistVF.woff",
+  src: "../../fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 
 const geistMono = localFont({
-  src: "../../../fonts/GeistVF.woff",
+  src: "../../fonts/GeistVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
@@ -41,22 +41,22 @@ interface HomeLayoutProps {
 }
 
 const HomeLayout: React.FC<HomeLayoutProps> = ({ children }) => {
-  return (
-    <div className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 text-gray-900`}>
-      <AuthProvider>
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <div className="flex flex-1">
-            <WandererSidebar isOpen={true} />
-            <main className="flex-1 container mx-auto p-4 mt-4">
-              {children} {/* Page content */}
-            </main>
+    return (
+      <div className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 text-gray-900`}>
+        <AuthProvider>
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <div className="flex flex-1">
+              <Sidebar isOpen={true} />
+              <main className="flex-1 container mx-auto p-4 mt-4">
+                {children} {/* Page content */}
+              </main>
+            </div>
           </div>
-        </div>
-      </AuthProvider>
-    </div>
-  );
-};
-
+        </AuthProvider>
+      </div>
+    );
+  };
+  
 
 export default HomeLayout;
