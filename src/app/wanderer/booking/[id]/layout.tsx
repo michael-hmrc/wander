@@ -6,17 +6,18 @@ import Navbar from "@/components/NavBar";
 import Sidebar from "@/components/Sidebar";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "../../globals.css";
+import "../../../globals.css";
+import WandererSidebar from '@/components/wanderer/WandererSidebar';
 
 // Load fonts
 const geistSans = localFont({
-  src: "../../fonts/GeistVF.woff",
+  src: "../../../fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 
 const geistMono = localFont({
-  src: "../../fonts/GeistVF.woff",
+  src: "../../../fonts/GeistVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
@@ -47,7 +48,7 @@ const HomeLayout: React.FC<HomeLayoutProps> = ({ children }) => {
           <div className="flex flex-col min-h-screen">
             <Navbar />
             <div className="flex flex-1">
-              <Sidebar isOpen={true} />
+              <WandererSidebar isOpen={true} />
               <main className="flex-1 container mx-auto p-4 mt-4">
                 {children} {/* Page content */}
               </main>

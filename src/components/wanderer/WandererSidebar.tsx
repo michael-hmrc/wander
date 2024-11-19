@@ -55,18 +55,18 @@ export default function Sidebar({ isOpen }: { isOpen: boolean }) {
                     </li>
                     <li>
                         <Link
-                            href="/wanderer/account/profile"
-                            className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group hover:text-indigo-700"
-                        >
-                            <span className={`${isCollapsed ? "hidden" : ""} ms-3`}>Profile</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
                             href="/wanderer/past-bookings"
                             className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group hover:text-indigo-700"
                         >
                             <span className={`${isCollapsed ? "hidden" : ""} ms-3`}>Past Bookings</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="/wanderer/account/profile"
+                            className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group hover:text-indigo-700"
+                        >
+                            <span className={`${isCollapsed ? "hidden" : ""} ms-3`}>Profile</span>
                         </Link>
                     </li>
                     <li>

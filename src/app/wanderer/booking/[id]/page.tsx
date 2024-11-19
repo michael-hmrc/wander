@@ -4,11 +4,37 @@ import { useRouter } from "next/navigation";
 import { QRCodeCanvas } from "qrcode.react"; // Adjust the path to your library
 import { useState } from "react";
 
+
+interface Booking {
+  id: number;
+  type: "Desk" | "Meeting Room";
+  location: string;
+  time: string;
+  street: string;
+  city: string;
+  postcode: string;
+  status: string; // "Active" or "Cancelled"
+}
+
 export default function UserHomePage() {
   // const { data: session, status } = useSession();
   const router = useRouter();
   const [userId, setUserId] = useState("");
   const [error, setError] = useState(null);
+
+  const [booking, setBooking] = useState<Booking>(
+    {
+      id: 1,
+      type: "Desk",
+      location: "Office A",
+      time: "10:00 AM - 2:00 PM",
+      street: "123 Desk Lane",
+      city: "New York",
+      postcode: "10001",
+      status: "Active",
+    }
+  );
+
 
   // useEffect(() => {
   //   if (status === "unauthenticated") {
@@ -46,11 +72,22 @@ export default function UserHomePage() {
       </div>
 
       <div className="mt-6">
-        <h2 className="text-xl font-semibold mb-2">User Details</h2>
-        {/* <p><strong>Name:</strong> {session.user.name}</p> */}
-        {/* <p><strong>Email:</strong> {session.user.email}</p> */}
-        <p><strong>Name:</strong> Hard coded name</p>
-        <p><strong>Email:</strong> Hard coded email</p>
+        <h2 className="text-xl font-semibold mb-2">Booking Details</h2>
+        <div>
+          <p className="font-medium">{booking.location}</p>
+          <p className="text-gray-500 text-sm">{booking.time}</p>
+          <div className="mt-2">
+            <p className="text-sm text-gray-600">Street: {booking.street}</p>
+            <p className="text-sm text-gray-600">City: {booking.city}</p>
+            <p className="text-sm text-gray-600">Postcode: {booking.postcode}</p>
+          </div>
+          <p
+            className={`text-sm font-bold mt-2 ${booking.status === "Cancelled" ? "text-red-500" : "text-green-500"
+              }`}
+          >
+            {booking.status}
+          </p>
+        </div>
       </div>
 
       {error && <p className="text-red-500 text-sm mt-4">{error}</p>}

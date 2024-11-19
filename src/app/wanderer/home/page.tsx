@@ -11,6 +11,9 @@ interface Booking {
   street: string;
   city: string;
   postcode: string;
+  contactNumber: string;
+  email: string;
+  company: string;
   status: string; // "Active" or "Cancelled"
 }
 
@@ -25,16 +28,126 @@ const DashboardPage = () => {
       street: "123 Desk Lane",
       city: "New York",
       postcode: "10001",
+      contactNumber: "07402205071",
+      email: "capgemini@gmail.com",
+      company: "Capgemini",
       status: "Active",
     },
     {
       id: 2,
+      type: "Desk",
+      location: "Office A",
+      time: "10:00 AM - 2:00 PM",
+      street: "123 Desk Lane",
+      city: "New York",
+      postcode: "10001",
+      contactNumber: "07402205071",
+      email: "capgemini@gmail.com",
+      company: "Capgemini",
+      status: "Active",
+    },
+    {
+      id: 3,
+      type: "Desk",
+      location: "Office A",
+      time: "10:00 AM - 2:00 PM",
+      street: "123 Desk Lane",
+      city: "New York",
+      postcode: "10001",
+      contactNumber: "07402205071",
+      email: "capgemini@gmail.com",
+      company: "Capgemini",
+      status: "Active",
+    },
+    {
+      id: 4,
+      type: "Desk",
+      location: "Office A",
+      time: "10:00 AM - 2:00 PM",
+      street: "123 Desk Lane",
+      city: "New York",
+      postcode: "10001",
+      contactNumber: "07402205071",
+      email: "capgemini@gmail.com",
+      company: "Capgemini",
+      status: "Active",
+    },
+    {
+      id: 5,
+      type: "Desk",
+      location: "Office A",
+      time: "10:00 AM - 2:00 PM",
+      street: "123 Desk Lane",
+      city: "New York",
+      postcode: "10001",
+      contactNumber: "07402205071",
+      email: "capgemini@gmail.com",
+      company: "Capgemini",
+      status: "Active",
+    },
+    {
+      id: 6,
       type: "Meeting Room",
       location: "Room 4, Office B",
       time: "2:30 PM - 4:30 PM",
       street: "456 Meeting Ave",
       city: "Los Angeles",
       postcode: "90001",
+      contactNumber: "07402205071",
+      email: "capgemini@gmail.com",
+      company: "Capgemini",
+      status: "Active",
+    },
+    {
+      id: 7,
+      type: "Meeting Room",
+      location: "Room 4, Office B",
+      time: "2:30 PM - 4:30 PM",
+      street: "456 Meeting Ave",
+      city: "Los Angeles",
+      postcode: "90001",
+      contactNumber: "07402205071",
+      email: "capgemini@gmail.com",
+      company: "Capgemini",
+      status: "Active",
+    },
+    {
+      id: 8,
+      type: "Meeting Room",
+      location: "Room 4, Office B",
+      time: "2:30 PM - 4:30 PM",
+      street: "456 Meeting Ave",
+      city: "Los Angeles",
+      postcode: "90001",
+      contactNumber: "07402205071",
+      email: "capgemini@gmail.com",
+      company: "Capgemini",
+      status: "Active",
+    },
+    {
+      id: 9,
+      type: "Meeting Room",
+      location: "Room 4, Office B",
+      time: "2:30 PM - 4:30 PM",
+      street: "456 Meeting Ave",
+      city: "Los Angeles",
+      postcode: "90001",
+      contactNumber: "07402205071",
+      email: "capgemini@gmail.com",
+      company: "Capgemini",
+      status: "Active",
+    },
+    {
+      id: 10,
+      type: "Meeting Room",
+      location: "Room 4, Office B",
+      time: "2:30 PM - 4:30 PM",
+      street: "456 Meeting Ave",
+      city: "Los Angeles",
+      postcode: "90001",
+      contactNumber: "07402205071",
+      email: "capgemini@gmail.com",
+      company: "Capgemini",
       status: "Active",
     },
   ]);
@@ -86,7 +199,7 @@ const DashboardPage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Desk Bookings Section */}
         <div className="bg-white shadow-md p-6 rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">Desk Bookings</h2>
+          <h2 className="text-xl font-semibold mb-4">Upcoming Desk Bookings</h2>
           {deskBookings.length > 0 ? (
             <ul className="divide-y divide-gray-200">
               {deskBookings.map((booking) => (
@@ -98,12 +211,16 @@ const DashboardPage = () => {
                       <p className="text-sm text-gray-600">Street: {booking.street}</p>
                       <p className="text-sm text-gray-600">City: {booking.city}</p>
                       <p className="text-sm text-gray-600">Postcode: {booking.postcode}</p>
+                      <p className="text-sm text-gray-600">{booking.contactNumber}</p>
+                      <p className="text-sm text-gray-600">{booking.email}</p>
+                      <p className="text-sm text-gray-600">{booking.company}</p>
                     </div>
-                    <p
-                      className={`text-sm font-bold mt-2 ${
-                        booking.status === "Cancelled" ? "text-red-500" : "text-green-500"
-                      }`}
-                    >
+
+                    <Link href={`/wanderer/booking/${booking.id}`} className="text-indigo-600 text-centerhover:bg-indigo-700 text-sm">
+                      View QR Code
+                    </Link>
+
+                    <p className={`text-sm font-bold mt-2 ${booking.status === "Cancelled" ? "text-red-500" : "text-green-500"}`}>
                       {booking.status}
                     </p>
                   </div>
@@ -144,7 +261,7 @@ const DashboardPage = () => {
 
         {/* Meeting Room Bookings Section */}
         <div className="bg-white shadow-md p-6 rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">Meeting Room Bookings</h2>
+          <h2 className="text-xl font-semibold mb-4">Upcoming Meeting Room Bookings</h2>
           {meetingRoomBookings.length > 0 ? (
             <ul className="divide-y divide-gray-200">
               {meetingRoomBookings.map((booking) => (
@@ -156,11 +273,16 @@ const DashboardPage = () => {
                       <p className="text-sm text-gray-600">Street: {booking.street}</p>
                       <p className="text-sm text-gray-600">City: {booking.city}</p>
                       <p className="text-sm text-gray-600">Postcode: {booking.postcode}</p>
+                      <p className="text-sm text-gray-600">{booking.contactNumber}</p>
+                      <p className="text-sm text-gray-600">{booking.email}</p>
+                      <p className="text-sm text-gray-600">{booking.company}</p>
                     </div>
+                    <Link href={"/wanderer/booking/1"} className="text-indigo-600 text-centerhover:bg-indigo-700 text-sm">
+                    View QR Code
+                    </Link>
                     <p
-                      className={`text-sm font-bold mt-2 ${
-                        booking.status === "Cancelled" ? "text-red-500" : "text-green-500"
-                      }`}
+                      className={`text-sm font-bold mt-2 ${booking.status === "Cancelled" ? "text-red-500" : "text-green-500"
+                        }`}
                     >
                       {booking.status}
                     </p>
