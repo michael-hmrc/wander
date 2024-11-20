@@ -18,6 +18,8 @@ interface Booking {
 }
 
 const DashboardPage = () => {
+
+
   const userName = "John Doe"; // Replace with dynamic user data if available
   const [upcomingBookings, setUpcomingBookings] = useState<Booking[]>([
     {
@@ -203,7 +205,7 @@ const DashboardPage = () => {
           {deskBookings.length > 0 ? (
             <ul className="divide-y divide-gray-200">
               {deskBookings.map((booking) => (
-                <li key={booking.id} className="py-4">
+                <li key={booking.id} className="py-4 flex justify-between">
                   <div>
                     <p className="font-medium">{booking.location}</p>
                     <p className="text-gray-500 text-sm">{booking.time}</p>
@@ -211,46 +213,43 @@ const DashboardPage = () => {
                       <p className="text-sm text-gray-600">Street: {booking.street}</p>
                       <p className="text-sm text-gray-600">City: {booking.city}</p>
                       <p className="text-sm text-gray-600">Postcode: {booking.postcode}</p>
-                      <p className="text-sm text-gray-600">{booking.contactNumber}</p>
-                      <p className="text-sm text-gray-600">{booking.email}</p>
-                      <p className="text-sm text-gray-600">{booking.company}</p>
                     </div>
-
-                    <Link href={`/wanderer/booking/${booking.id}`} className="text-indigo-600 text-centerhover:bg-indigo-700 text-sm">
-                      View QR Code
-                    </Link>
-
                     <p className={`text-sm font-bold mt-2 ${booking.status === "Cancelled" ? "text-red-500" : "text-green-500"}`}>
                       {booking.status}
                     </p>
                   </div>
-                  {booking.status === "Active" && (
-                    <div className="mt-2">
-                      {confirmationBookingId === booking.id ? (
-                        <div className="flex items-center gap-4">
+                  <div className="text-right">
+                    <p className="text-sm text-gray-600">Contact: {booking.contactNumber}</p>
+                    <p className="text-sm text-gray-600">Email: {booking.email}</p>
+                    <p className="text-sm text-gray-600">Company: {booking.company}</p>
+                    {booking.status === "Active" && (
+                      <div className="mt-2">
+                        {confirmationBookingId === booking.id ? (
+                          <div className="flex items-center gap-4">
+                            <button
+                              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                              onClick={() => handleCancelBooking(booking.id)}
+                            >
+                              Yes, Cancel
+                            </button>
+                            <button
+                              className="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400"
+                              onClick={() => setConfirmationBookingId(null)}
+                            >
+                              No
+                            </button>
+                          </div>
+                        ) : (
                           <button
-                            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                            onClick={() => handleCancelBooking(booking.id)}
+                            className="text-red-600 hover:underline"
+                            onClick={() => setConfirmationBookingId(booking.id)}
                           >
-                            Yes, Cancel
+                            Cancel
                           </button>
-                          <button
-                            className="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400"
-                            onClick={() => setConfirmationBookingId(null)}
-                          >
-                            No
-                          </button>
-                        </div>
-                      ) : (
-                        <button
-                          className="text-red-600 hover:underline"
-                          onClick={() => setConfirmationBookingId(booking.id)}
-                        >
-                          Cancel
-                        </button>
-                      )}
-                    </div>
-                  )}
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </li>
               ))}
             </ul>
@@ -265,7 +264,7 @@ const DashboardPage = () => {
           {meetingRoomBookings.length > 0 ? (
             <ul className="divide-y divide-gray-200">
               {meetingRoomBookings.map((booking) => (
-                <li key={booking.id} className="py-4">
+                <li key={booking.id} className="py-4 flex justify-between">
                   <div>
                     <p className="font-medium">{booking.location}</p>
                     <p className="text-gray-500 text-sm">{booking.time}</p>
@@ -273,47 +272,47 @@ const DashboardPage = () => {
                       <p className="text-sm text-gray-600">Street: {booking.street}</p>
                       <p className="text-sm text-gray-600">City: {booking.city}</p>
                       <p className="text-sm text-gray-600">Postcode: {booking.postcode}</p>
-                      <p className="text-sm text-gray-600">{booking.contactNumber}</p>
-                      <p className="text-sm text-gray-600">{booking.email}</p>
-                      <p className="text-sm text-gray-600">{booking.company}</p>
                     </div>
-                    <Link href={"/wanderer/booking/1"} className="text-indigo-600 text-centerhover:bg-indigo-700 text-sm">
-                    View QR Code
-                    </Link>
                     <p
-                      className={`text-sm font-bold mt-2 ${booking.status === "Cancelled" ? "text-red-500" : "text-green-500"
-                        }`}
+                      className={`text-sm font-bold mt-2 ${
+                        booking.status === "Cancelled" ? "text-red-500" : "text-green-500"
+                      }`}
                     >
                       {booking.status}
                     </p>
                   </div>
-                  {booking.status === "Active" && (
-                    <div className="mt-2">
-                      {confirmationBookingId === booking.id ? (
-                        <div className="flex items-center gap-4">
+                  <div className="text-right">
+                    <p className="text-sm text-gray-600">Contact: {booking.contactNumber}</p>
+                    <p className="text-sm text-gray-600">Email: {booking.email}</p>
+                    <p className="text-sm text-gray-600">Company: {booking.company}</p>
+                    {booking.status === "Active" && (
+                      <div className="mt-2">
+                        {confirmationBookingId === booking.id ? (
+                          <div className="flex items-center gap-4">
+                            <button
+                              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                              onClick={() => handleCancelBooking(booking.id)}
+                            >
+                              Yes, Cancel
+                            </button>
+                            <button
+                              className="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400"
+                              onClick={() => setConfirmationBookingId(null)}
+                            >
+                              No
+                            </button>
+                          </div>
+                        ) : (
                           <button
-                            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                            onClick={() => handleCancelBooking(booking.id)}
+                            className="text-red-600 hover:underline"
+                            onClick={() => setConfirmationBookingId(booking.id)}
                           >
-                            Yes, Cancel
+                            Cancel
                           </button>
-                          <button
-                            className="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400"
-                            onClick={() => setConfirmationBookingId(null)}
-                          >
-                            No
-                          </button>
-                        </div>
-                      ) : (
-                        <button
-                          className="text-red-600 hover:underline"
-                          onClick={() => setConfirmationBookingId(booking.id)}
-                        >
-                          Cancel
-                        </button>
-                      )}
-                    </div>
-                  )}
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </li>
               ))}
             </ul>
