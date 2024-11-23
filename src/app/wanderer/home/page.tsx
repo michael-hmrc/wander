@@ -175,28 +175,6 @@ const DashboardPage = () => {
         <p className="text-gray-600 mt-2">Here’s a quick overview of your account and upcoming bookings.</p>
       </div>
 
-      {/* Quick Actions */}
-      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-        <Link
-          href="/dashboard/book-desk"
-          className="block bg-blue-500 text-white text-center py-4 px-6 rounded-lg shadow hover:bg-blue-600"
-        >
-          Book a Desk
-        </Link>
-        <Link
-          href="/dashboard/meeting-rooms"
-          className="block bg-green-500 text-white text-center py-4 px-6 rounded-lg shadow hover:bg-green-600"
-        >
-          Book a Meeting Room
-        </Link>
-        <Link
-          href="/wanderer/past-bookings"
-          className="block bg-indigo-500 text-white text-center py-4 px-6 rounded-lg shadow hover:bg-indigo-600"
-        >
-          View Past Bookings
-        </Link>
-      </div> */}
-
       {/* Side-by-Side Booking Sections */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Desk Bookings Section */}
